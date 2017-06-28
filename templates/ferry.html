@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vertical timeline intervals</title>
+    <link href="/static/css/ferry.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+
+    <!-- Latest compiled and minified JavaScript -->
+  </head>
+  <body>
+    <div class="container">
+    <div class="page-header">
+        <h1 id="timeline">{{ schedule[0].origin_pier }} -> {{ schedule[0].destination_pier }}</h1>
+    </div>
+    <ul class="timeline">
+      {% for departure in schedule %}
+
+          {% if departure.vessel == 'Fast'%}
+          <li>
+          <div class="timeline-badge success">{{ departure.schedule.time[:-3] }}</div>
+          {% else %}
+          <li class="timeline-inverted">
+          <div class="timeline-badge warning">{{ departure.schedule.time[:-3] }}</div>
+          {% endif %}
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{ departure.vessel }} ferry</h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{ departure.journey_time}}</small></p>
+            </div>
+            <div class="timeline-body">
+
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+  </body>
+</html>

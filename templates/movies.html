@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ML</title>
+    <link href="/static/css/movies.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Movie List</h1>
+    <table class="rwd-table">
+        <tr>
+            <th>Movie Title</th>
+            <th>Resolution</th>
+            <th>Bitrate</th>
+            <th>Codec</th>
+            <th>Profile</th>
+        </tr>
+
+        {% for movie in movie_list %}
+        <tr>
+            {% if movie.isOfGoodQuality() == False %}
+              {% if movie.getIMDB_ID() != None %}
+                <td class="lowquality" data-th="Movie Title"><a href="{{ 'movies/update/%s'%movie.getIMDB_ID() }}">{{ movie.getMovieTitle() }}</a></td>
+              {% else %}
+                <td class="lowquality" data-th="Movie Title">{{ movie.getMovieTitle() }}</td>
+              {% endif %}
+            {% else %}
+            <td data-th="Movie Title">{{ movie.getMovieTitle() }}</td>
+            {% endif %}
+            <td data-th="Video Resolution">{{ movie.getVideoResolution() }}</td>
+            <td data-th="Video Bitrate">{{ movie.getVideoBitrate() }}</td>
+            <td data-th="Video Codec">{{ movie.getVideoCodec() }}</td>
+            <td data-th="Video Profile">{{ movie.getVideoProfile() }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</body>
+</html>

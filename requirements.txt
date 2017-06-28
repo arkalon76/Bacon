@@ -1,0 +1,6 @@
+flask
+requests_cache
+requests
+json
+codecs
+pymongo

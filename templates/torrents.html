@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ML</title>
+    <link href="/static/css/movies.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Torrent List (Only Remux or Full BD)</h1>
+    <table class="rwd-table">
+        <tr>
+            <th>Torrent Title</th>
+            <th>Seeders</th>
+            <th>Category</th>
+        </tr>
+        {% if 'error' in torrent_list %}
+            <td data-th="Torrent Title">{{ torrent_list['error'] }}</td>
+        {% else %}
+        {% for torrent in torrent_list %}
+        <tr>
+
+            <td data-th="Torrent Title"><a href="{{ torrent.info_page }}">{{ torrent.title }}</a></td>
+            <td data-th="Seeders">{{ torrent.seeder_count }}</td>
+            <td data-th="Category"><a href="{{ torrent.magnet }}">{{ torrent.category }}</a></td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</body>
+</html>
